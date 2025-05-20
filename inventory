@@ -1,2 +1,2 @@
-#10.12.5.170
-10.12.5.169 ansible_python_interpreter=/usr/bin/python3 
+10.12.5.170 apache_package=apache2 php_package=libapache2-mod-php
+10.12.5.169 ansible_python_interpreter=/usr/bin/python3 apache_package=httpd php_package=php

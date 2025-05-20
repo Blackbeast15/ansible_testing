@@ -5,15 +5,9 @@
   tasks:
 
   - name: install apache2
-    apt:
-      name: apache2
+    package:
+      name:
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
       state: latest
       update_cache: yes
-    when: ansible_distribution in [ "Debian" , "Ubuntu" ]
-
-  - name: install apache
-    dnf:
-      name: httpd
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "Fedora"
