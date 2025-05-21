@@ -3,12 +3,11 @@
 - hosts: all
   become: true
   tasks:
- 
-  - name: update repository index
-    apt:
-      update_cache: yes
 
-  - name: install apache2
-    apt:
-      name: apache2 
+  - name: remove apache und php
+    package:
+      name:
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
       state: absent
+      update_cache: yes
