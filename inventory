@@ -9,7 +9,7 @@
 
 [debian]
 10.12.5.170
-12.12.5.104
+10.12.5.104
 
 [fedora]
 10.12.5.169 ansible_python_interpreter=/usr/bin/python3
