@@ -2,6 +2,25 @@
 
 - hosts: all
   become: true
+  pre_tasks:
+
+  - name: install updates (Fedora)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+
+  - name: install updates (Ubuntu und Debian)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == [ "debian" , "Ubuntu" ]
+
+
+- hosts: all
+  become: true
   tasks:
 
   - name: install apache2
@@ -22,3 +41,20 @@
       state: latest
       update_cache: yes
     when: ansible_distribution == "Fedora"
+
+
+  - name: Ensure /var/www/html exists
+    file:
+      path: /var/www/html
+      state: directory
+      mode: 0755
+
+
+  - name: copy deafult html file or site
+    tags: apache,apache2,httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
